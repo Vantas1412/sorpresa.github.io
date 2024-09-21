@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Lluvia de letras</title>
+  </head>
+  <body>
+    
+    <div class="container">
+        <h1 class="text"> Lo que se de ti Hasta ahora Y espero que descubra mas </h1>  
+      <div class="cloud"></div>
+    </div>
+    <script>
+      function randomText() {
+        var text = "abcdefghijklmnñopqrstuvwxyz";
+        let letter = text[Math.floor(Math.random() * text.length)];
+        return letter;
+      }
+
+      function rain() {
+        const halagos = [
+          "Brillante",
+          "Hermosa",
+          "Inteligente",
+          "Fuerte",
+          "Elegante",
+          "Creativa",
+          "Apasionada",
+          "Valiente",
+          "Inspiradora",
+          "Carismática",
+          "Hermosa"
+        ];
+
+        let cloud = document.querySelector(".cloud");
+        let elem = document.createElement("div");
+        let left = Math.floor(Math.random() * 280);
+        let duration = 2 + Math.random() * 2; // Duración de la caída entre 2 y 4 segundos
+        let size = Math.random() * 1.4;
+
+        elem.classList.add("text");
+        cloud.appendChild(elem);
+
+        const indiceAleatorio = Math.floor(Math.random() * halagos.length);
+        elem.innerText = halagos[indiceAleatorio];
+        elem.style.left = 5+ left + "px";
+        elem.style.fontSize = 0.5 + size + "em";
+        elem.style.animationDuration = duration + "s"; // Corregir typo en animationDuration
+        elem.style.animationDelay = Math.random() * 1 + "s"; // Agregar delay aleatorio
+
+        setTimeout(function () {
+          cloud.removeChild(elem);
+        }, duration * 1000); // Elimina el texto cuando termine la animación
+      }
+
+      // Intervalo para generar nuevas palabras con más espacio entre cada una
+      setInterval(function () {
+        rain();
+      }, 500); // Se crearán palabras nuevas cada 500ms
+    </script>
+  </body>
+</html>
